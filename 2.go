@@ -7,15 +7,15 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 */
 
 import (
+	"encoding/json"
 	"net/http"
-    "encoding/json"
 )
 
 func EulerTwoHandler(rw http.ResponseWriter, req *http.Request) {
-    sum := fibSum(4000000)
-	responseData := map[string]interface{} {
-		"result" : "OK",
-        "sum": sum,
+	sum := fibSum(4000000)
+	responseData := map[string]interface{}{
+		"result": "OK",
+		"sum":    sum,
 	}
 
 	jsonEncoder := json.NewEncoder(rw)
@@ -23,18 +23,18 @@ func EulerTwoHandler(rw http.ResponseWriter, req *http.Request) {
 }
 
 func fibSum(until int) int {
-    a := 1
-    b := 2
-    c := a + b
-    sum := 2 // to account for b
+	a := 1
+	b := 2
+	c := a + b
+	sum := 2 // to account for b
 
-    for c < until {
-        if c % 2 == 0 {
-            sum += c
-        }
-        a = b
-        b = c
-        c = b + a
-    }
-    return sum
+	for c < until {
+		if c%2 == 0 {
+			sum += c
+		}
+		a = b
+		b = c
+		c = b + a
+	}
+	return sum
 }
